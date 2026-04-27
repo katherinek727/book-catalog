@@ -34,3 +34,7 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
+
+# local config overrides
+/config/params-local.php
+/config/db-local.php
