@@ -26,6 +26,10 @@ $config = [
             ],
         ],
         'db' => $db,
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+            'defaultRoles' => ['guest'],
+        ],
     ],
     'params' => $params,
     /*
