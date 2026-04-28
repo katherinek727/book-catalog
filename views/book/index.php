@@ -7,10 +7,13 @@ $this->title = 'Book Catalog';
 ?>
 <div class="page-header">
     <div>
-        <h1>Book Catalog</h1>
+        <h1 class="page-title">Book Catalog</h1>
         <p style="color:var(--ink-4);font-size:.9rem;margin-top:4px;"><?= $pagination->totalCount ?> title<?= $pagination->totalCount !== 1 ? 's' : '' ?></p>
     </div>
-    <div class="d-flex align-items-center gap-2">
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+        <?php if (!Yii::$app->user->isGuest): ?>
+            <?= Html::a('+ Add Book', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?php endif; ?>
         <div class="view-toggle" id="bookViewToggle">
             <button class="view-toggle-btn active" data-view="grid" title="Grid view">
                 <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 1h6v6H1V1zm8 0h6v6H9V1zM1 9h6v6H1V9zm8 0h6v6H9V9z"/></svg>
@@ -19,9 +22,6 @@ $this->title = 'Book Catalog';
                 <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 2h14v2H1V2zm0 5h14v2H1V7zm0 5h14v2H1v-2z"/></svg>
             </button>
         </div>
-        <?php if (!Yii::$app->user->isGuest): ?>
-            <?= Html::a('+ Add Book', ['create'], ['class' => 'btn btn-primary']) ?>
-        <?php endif; ?>
     </div>
 </div>
 

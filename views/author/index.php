@@ -4,12 +4,16 @@ use yii\helpers\Html;
 
 $this->title = 'Authors';
 ?>
+
 <div class="page-header">
     <div>
-        <h1>Authors</h1>
+        <h1 class="page-title">Authors</h1>
         <p style="color:var(--ink-4);font-size:.9rem;margin-top:4px;"><?= count($authors) ?> author<?= count($authors) !== 1 ? 's' : '' ?> in the catalog</p>
     </div>
-    <div class="d-flex align-items-center gap-2">
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+        <?php if (!Yii::$app->user->isGuest): ?>
+            <?= Html::a('+ New Author', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?php endif; ?>
         <div class="view-toggle" id="authorViewToggle">
             <button class="view-toggle-btn active" data-view="grid" title="Grid view">
                 <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 1h6v6H1V1zm8 0h6v6H9V1zM1 9h6v6H1V9zm8 0h6v6H9V9z"/></svg>
@@ -18,9 +22,6 @@ $this->title = 'Authors';
                 <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 2h14v2H1V2zm0 5h14v2H1V7zm0 5h14v2H1v-2z"/></svg>
             </button>
         </div>
-        <?php if (!Yii::$app->user->isGuest): ?>
-            <?= Html::a('+ New Author', ['create'], ['class' => 'btn btn-primary']) ?>
-        <?php endif; ?>
     </div>
 </div>
 
@@ -52,7 +53,7 @@ $this->title = 'Authors';
                                     <span class="stat-chip"><?= count($author->books) ?> book<?= count($author->books) !== 1 ? 's' : '' ?></span>
                                 </div>
                             </div>
-                            <div class="d-flex gap-2 flex-wrap card-actions" style="flex-shrink:0;">
+                            <div class="d-flex gap-2 flex-wrap card-actions" style="flex-shrink:0;margin-top:12px;">
                                 <?= Html::a('View', ['view', 'id' => $author->id], ['class' => 'btn btn-ghost btn-sm']) ?>
                                 <?php if (!Yii::$app->user->isGuest): ?>
                                     <?= Html::a('Edit', ['update', 'id' => $author->id], ['class' => 'btn btn-secondary btn-sm']) ?>
@@ -89,11 +90,7 @@ $this->title = 'Authors';
     });
 
     function applyView(view) {
-        if (view === 'list') {
-            container.classList.add('items-list');
-        } else {
-            container.classList.remove('items-list');
-        }
+        container.classList.toggle('items-list', view === 'list');
         toggle.querySelectorAll('.view-toggle-btn').forEach(function (b) {
             b.classList.toggle('active', b.dataset.view === view);
         });
