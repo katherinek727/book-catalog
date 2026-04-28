@@ -298,3 +298,19 @@ input:focus, textarea:focus, select:focus {
 .form-text { font-size: .82rem; color: var(--muted); margin-top: 4px; display: block; }
 .form-inline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .form-control { padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: .95rem; }
+
+/* =====================
+   Page Header
+   ===================== */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+}
+
+.page-header h1 { margin-bottom: 0; }

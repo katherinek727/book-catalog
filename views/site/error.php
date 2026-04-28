@@ -1,27 +1,20 @@
 <?php
 
+use yii\helpers\Html;
+
 /** @var yii\web\View $this */
 /** @var string $name */
 /** @var string $message */
-/** @var Exception $exception */
-
-use yii\helpers\Html;
 
 $this->title = $name;
 ?>
-<div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+<div class="site-error" style="text-align:center;padding:60px 20px;">
+    <div style="font-size:5rem;color:#dee2e6;margin-bottom:16px;">
+        <?= $name === 'Not Found' ? '404' : '⚠' ?>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
+    <h1 style="color:#2c3e50;"><?= Html::encode($name) ?></h1>
+    <p style="color:#6c757d;max-width:480px;margin:12px auto 28px;">
+        <?= nl2br(Html::encode($message)) ?>
     </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
+    <?= Html::a('← Back to Home', ['/site/index'], ['class' => 'btn btn-primary']) ?>
 </div>

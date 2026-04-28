@@ -1,53 +1,21 @@
 <?php
 
+use yii\helpers\Html;
+
 /** @var yii\web\View $this */
 
-$this->title = 'My Yii Application';
+$this->title = Yii::$app->name;
 ?>
-<div class="site-index">
+<div class="site-index" style="text-align:center;padding:60px 20px;">
+    <h1 style="font-size:2.4rem;margin-bottom:12px;"><?= Html::encode(Yii::$app->name) ?></h1>
+    <p style="color:#6c757d;font-size:1.1rem;max-width:520px;margin:0 auto 36px;">
+        Browse books, discover authors, and subscribe to get SMS notifications on new releases.
+    </p>
 
-    <div class="jumbotron text-center bg-transparent mt-5 mb-5">
-        <h1 class="display-4">Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <?= Html::a('Browse Books', ['/book/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('View Authors', ['/author/index'], ['class' => 'btn btn-secondary']) ?>
+        <?= Html::a('Subscribe', ['/subscription/subscribe'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Top-10 Report', ['/report/index'], ['class' => 'btn btn-secondary']) ?>
     </div>
 </div>
