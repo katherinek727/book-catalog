@@ -2,17 +2,10 @@
 
 use yii\helpers\Html;
 
-/** @var app\models\Book $model */
-/** @var app\models\Author[] $authors */
-/** @var int[] $selectedAuthorIds */
-
-$this->title = 'Update: ' . Html::encode($model->title);
+$this->title = 'Edit Book';
 ?>
-<div class="book-update">
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?= $this->render('_form', [
-        'model'             => $model,
-        'authors'           => $authors,
-        'selectedAuthorIds' => $selectedAuthorIds,
-    ]) ?>
+<div class="page-header">
+    <h1>Edit Book</h1>
+    <?= Html::a('← Back', ['view', 'id' => $model->id], ['class' => 'btn btn-ghost btn-sm']) ?>
 </div>
+<?= $this->render('_form', ['model' => $model, 'authors' => $authors, 'selectedAuthorIds' => $selectedAuthorIds]) ?>

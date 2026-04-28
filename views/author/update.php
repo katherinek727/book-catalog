@@ -2,11 +2,10 @@
 
 use yii\helpers\Html;
 
-/** @var app\models\Author $model */
-
-$this->title = 'Update: ' . Html::encode($model->full_name);
+$this->title = 'Edit Author';
 ?>
-<div class="author-update">
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?= $this->render('_form', ['model' => $model]) ?>
+<div class="page-header">
+    <h1>Edit Author</h1>
+    <?= Html::a('← Back', ['view', 'id' => $model->id], ['class' => 'btn btn-ghost btn-sm']) ?>
 </div>
+<?= $this->render('_form', ['model' => $model]) ?>

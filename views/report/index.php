@@ -2,53 +2,61 @@
 
 use yii\helpers\Html;
 
-/** @var array $results */
-/** @var int $year */
-
-$this->title = 'Top-10 Authors Report';
+$this->title = 'Top Authors Report';
 ?>
-<div class="report-index">
-    <h1><?= Html::encode($this->title) ?></h1>
-    <p class="text-muted" style="margin-bottom:24px;">Top 10 authors by number of books published in a given year.</p>
-
-    <form method="get" class="form-inline" style="margin-bottom:28px;">
-        <label for="year-input" style="font-weight:600;margin-right:8px;">Year:</label>
+<div class="page-header">
+    <div>
+        <h1>Top Authors Report</h1>
+        <p style="color:var(--ink-4);font-size:.9rem;margin-top:4px;">Ranked by books published in a given year.</p>
+    </div>
+    <form method="get" class="d-flex align-items-center gap-2">
+        <label for="year-input" style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;">
+            Year
+        </label>
         <input type="number" id="year-input" name="year"
-               value="<?= (int)$year ?>"
-               min="1000" max="<?= date('Y') ?>"
-               class="form-control"
-               style="width:120px;">
-        <button type="submit" class="btn btn-primary" style="margin-left:8px;">Filter</button>
+               value="<?= (int)$year ?>" min="1000" max="<?= date('Y') ?>"
+               style="width:100px;">
+        <button type="submit" class="btn btn-primary btn-sm">Apply</button>
     </form>
+</div>
 
-    <?php if (empty($results)): ?>
-        <div class="card">
-            <div class="card-body text-muted">
-                No data found for <?= (int)$year ?>.
-            </div>
-        </div>
-    <?php else: ?>
+<?php if (empty($results)): ?>
+    <div class="empty-state">
+        <div class="empty-state-icon">📊</div>
+        <h3>No data for <?= (int)$year ?></h3>
+        <p>No books were published in this year, or none have been added yet.</p>
+    </div>
+<?php else: ?>
+    <div class="table-wrap">
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width:50px;">#</th>
+                    <th style="width:64px;">Rank</th>
                     <th>Author</th>
-                    <th style="width:160px;">Books in <?= (int)$year ?></th>
+                    <th style="width:180px;text-align:right;">Books in <?= (int)$year ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($results as $i => $row): ?>
                 <tr>
-                    <td><?= $i + 1 ?></td>
-                    <td><?= Html::a(Html::encode($row['full_name']), ['/author/view', 'id' => $row['id']]) ?></td>
                     <td>
-                        <span style="display:inline-block;background:#2c3e50;color:#fff;padding:2px 10px;border-radius:12px;font-size:.85rem;">
-                            <?= (int)$row['book_count'] ?>
-                        </span>
+                        <?php $rc = match($i) { 0=>'rank-1', 1=>'rank-2', 2=>'rank-3', default=>'rank-n' }; ?>
+                        <span class="rank <?= $rc ?>"><?= $i + 1 ?></span>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="author-avatar" style="width:34px;height:34px;font-size:.9rem;">
+                                <?= mb_strtoupper(mb_substr($row['full_name'], 0, 1)) ?>
+                            </div>
+                            <?= Html::a(Html::encode($row['full_name']), ['/author/view', 'id' => $row['id']]) ?>
+                        </div>
+                    </td>
+                    <td style="text-align:right;">
+                        <span class="badge badge-gold"><?= (int)$row['book_count'] ?></span>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-    <?php endif; ?>
-</div>
+    </div>
+<?php endif; ?>

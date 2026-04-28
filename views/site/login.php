@@ -3,23 +3,31 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/** @var yii\web\View $this */
-/** @var app\models\LoginForm $model */
-
-$this->title = 'Login';
+$this->title = 'Sign In';
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="auth-wrap">
+    <div class="auth-card">
+        <div class="hero-eyebrow" style="margin-bottom:16px;">Book Catalog</div>
+        <h1>Welcome back</h1>
+        <p class="auth-sub">Sign in to manage the catalog.</p>
 
-    <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-        <?= $form->field($model, 'password')->passwordInput() ?>
-        <?= $form->field($model, 'rememberMe')->checkbox() ?>
+            <?= $form->field($model, 'username')->textInput([
+                'autofocus'   => true,
+                'placeholder' => 'Username',
+            ])->label('Username') ?>
 
-        <div>
-            <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-        </div>
+            <?= $form->field($model, 'password')->passwordInput([
+                'placeholder' => '••••••••',
+            ])->label('Password') ?>
 
-    <?php ActiveForm::end(); ?>
+            <?= $form->field($model, 'rememberMe')->checkbox()->label('Keep me signed in') ?>
+
+            <div style="margin-top:28px;">
+                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary', 'style' => 'width:100%;justify-content:center;']) ?>
+            </div>
+
+        <?php ActiveForm::end(); ?>
+    </div>
 </div>

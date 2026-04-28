@@ -1,10 +1,6 @@
 <?php
 
-/** @var app\models\Author $model */
-
-$this->title = 'Create Author';
+$this->title = 'New Author';
 ?>
-<div class="author-create">
-    <h1><?= $this->title ?></h1>
-    <?= $this->render('_form', ['model' => $model]) ?>
-</div>
+<div class="page-header"><h1>New Author</h1></div>
+<?= $this->render('_form', ['model' => $model]) ?>
