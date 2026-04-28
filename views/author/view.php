@@ -7,26 +7,35 @@ use yii\helpers\Html;
 $this->title = $author->full_name;
 ?>
 <div class="author-view">
-    <h1><?= Html::encode($author->full_name) ?></h1>
+    <div class="page-header">
+        <h1><?= Html::encode($author->full_name) ?></h1>
+        <div style="display:flex;gap:8px;">
+            <?php if (!Yii::$app->user->isGuest): ?>
+                <?= Html::a('Edit', ['update', 'id' => $author->id], ['class' => 'btn btn-warning']) ?>
+                <?= Html::a('Delete', ['delete', 'id' => $author->id], [
+                    'class' => 'btn btn-danger',
+                    'data'  => ['confirm' => 'Delete this author?', 'method' => 'post'],
+                ]) ?>
+            <?php endif; ?>
+            <?= Html::a('← Back', ['index'], ['class' => 'btn btn-secondary']) ?>
+        </div>
+    </div>
 
-    <?php if (!Yii::$app->user->isGuest): ?>
-        <?= Html::a('Edit', ['update', 'id' => $author->id], ['class' => 'btn btn-warning']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $author->id], [
-            'class' => 'btn btn-danger',
-            'data'  => ['confirm' => 'Delete this author?', 'method' => 'post'],
-        ]) ?>
-    <?php endif; ?>
-
-    <h3 class="mt-4">Books</h3>
-    <?php if ($author->books): ?>
-        <ul>
-            <?php foreach ($author->books as $book): ?>
-                <li><?= Html::a(Html::encode($book->title), ['/book/view', 'id' => $book->id]) ?> (<?= $book->year ?>)</li>
-            <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <p>No books yet.</p>
-    <?php endif; ?>
-
-    <?= Html::a('Back to Authors', ['index'], ['class' => 'btn btn-secondary mt-3']) ?>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3>Books by <?= Html::encode($author->full_name) ?></h3>
+            <?php if ($author->books): ?>
+                <ul style="list-style:none;padding:0;">
+                    <?php foreach ($author->books as $book): ?>
+                        <li style="padding:8px 0;border-bottom:1px solid #eee;">
+                            <?= Html::a(Html::encode($book->title), ['/book/view', 'id' => $book->id]) ?>
+                            <span class="text-muted">(<?= $book->year ?>)</span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
+                <p class="text-muted">No books yet.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
