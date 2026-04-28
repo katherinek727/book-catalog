@@ -697,3 +697,91 @@ input[type=checkbox] { width: 15px; height: 15px; accent-color: var(--gold); cur
 ::-webkit-scrollbar-track { background: var(--cream); }
 ::-webkit-scrollbar-thumb { background: var(--cream-3); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-2); }
+
+/* =====================
+   View Toggle (Grid / List)
+   ===================== */
+.view-toggle {
+  display: flex;
+  gap: 2px;
+  background: var(--cream-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+}
+
+.view-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--ink-4);
+  transition: background .15s, color .15s;
+}
+
+.view-toggle-btn:hover { color: var(--ink-2); }
+.view-toggle-btn.active { background: #fff; color: var(--ink); box-shadow: var(--shadow-sm); }
+
+.view-toggle-btn svg { width: 16px; height: 16px; }
+
+/* --- List layout --- */
+.items-list .row { flex-direction: column; }
+
+.items-list .col-md-3,
+.items-list .col-md-4 {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.items-list .card {
+  display: flex;
+  flex-direction: row;
+  border-radius: var(--radius);
+}
+
+.items-list .card-img-top,
+.items-list .card-no-cover {
+  width: 90px;
+  min-width: 90px;
+  height: auto;
+  min-height: 90px;
+  border-bottom: none;
+  border-right: 1px solid var(--border);
+  border-radius: var(--radius) 0 0 var(--radius);
+  font-size: .65rem;
+}
+
+.items-list .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  padding: 14px 18px;
+  gap: 16px;
+}
+
+.items-list .card-body .card-title { margin-bottom: 2px; font-size: 1rem; }
+.items-list .card-body .card-text  { margin-bottom: 0; }
+
+.items-list .card-body .card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.items-list .card-body .card-actions { flex-shrink: 0; }
+
+/* Author list mode */
+.items-list .author-card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
