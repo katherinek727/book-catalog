@@ -780,8 +780,39 @@ input[type=checkbox] { width: 15px; height: 15px; accent-color: var(--gold); cur
 /* Author list mode */
 .items-list .author-card-inner {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   gap: 16px;
+}
+
+.items-list .author-card-inner .card-actions {
+  margin-top: 0 !important;
+  flex-shrink: 0;
+}
+
+/* --- Page Title --- */
+.page-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+/* --- Toolbar (below page header) --- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cream-3);
+}
+
+/* --- Author card grid layout fix --- */
+.author-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
