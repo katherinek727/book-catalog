@@ -54,24 +54,32 @@ class AuthorController extends Controller
     {
         $model = new Author();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Author created successfully.');
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Author created successfully.');
+            } else {
+                Yii::$app->session->setFlash('error', implode(' ', $model->getFirstErrors()));
+            }
+            return $this->redirect(['index']);
         }
 
-        return $this->render('create', ['model' => $model]);
+        return $this->redirect(['index']);
     }
 
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Author updated successfully.');
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Author updated successfully.');
+            } else {
+                Yii::$app->session->setFlash('error', implode(' ', $model->getFirstErrors()));
+            }
+            return $this->redirect(['index']);
         }
 
-        return $this->render('update', ['model' => $model]);
+        return $this->redirect(['index']);
     }
 
     public function actionDelete($id)
