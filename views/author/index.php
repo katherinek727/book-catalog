@@ -86,10 +86,15 @@ $createModel = $createModel ?? new \app\models\Author();
                                         onclick="openEditModal(<?= $author->id ?>, <?= Html::encode(json_encode($author->full_name)) ?>)">
                                         Edit
                                     </button>
-                                    <?= Html::a('Delete', ['delete', 'id' => $author->id], [
-                                        'class' => 'btn btn-danger btn-sm',
-                                        'data'  => ['confirm' => 'Delete "' . Html::encode($author->full_name) . '"?', 'method' => 'post'],
-                                    ]) ?>
+                                    <?php
+                                    $confirmMsg = 'Delete "' . Html::encode($author->full_name) . '"?';
+                                    echo Html::beginForm(['delete', 'id' => $author->id], 'post', ['style' => 'display:inline']);
+                                    echo Html::submitButton('Delete', [
+                                        'class'   => 'btn btn-danger btn-sm',
+                                        'onclick' => "return confirm(" . json_encode($confirmMsg) . ");",
+                                    ]);
+                                    echo Html::endForm();
+                                    ?>
                                 <?php endif; ?>
                             </div>
                         </div>
